@@ -18,8 +18,8 @@ def find_excel_files_with_keyword_in_filename(directory, keywords):
         print(f"Directory '{directory}' does not exist.")
         return matching_files
 
-    # Convert the keyword to a regexp pattern
-    pattern = re.compile(re.escape(keywords), re.IGNORECASE)
+    # Create a pattern that matches any of the keywords
+    pattern = re.compile('|'.join(re.escape(keyword) for keyword in keywords), re.IGNORECASE)
 
     for filename in os.listdir(directory):
         if filename.endswith(('.xls', '.xlsx')):
